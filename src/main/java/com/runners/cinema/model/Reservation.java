@@ -4,6 +4,7 @@ import com.runners.cinema.model.enums.AudienceStatus;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Table(name="t_reservation")
@@ -29,7 +30,7 @@ public class Reservation {
 
     @OneToMany
     @JoinColumn(name = "seats_id", referencedColumnName = "id")
-    private Seats seats;
+    private Set<Seats> seats;
 
     @Column(length = 7, nullable = false)
     private String pnrNumber;
@@ -47,7 +48,9 @@ public class Reservation {
     public Reservation() {
     }
 
-    public Reservation(User user, Ticket ticket, LocalDateTime reservationDate, AudienceStatus audienceStatus, Seats seats, String pnrNumber, Movie movie, Cinema cinema) {
+    public Reservation(Long id, User user, Ticket ticket, LocalDateTime reservationDate,
+                       AudienceStatus audienceStatus, Set<Seats> seats, String pnrNumber, Movie movie, Cinema cinema) {
+        this.id = id;
         this.user = user;
         this.ticket = ticket;
         this.reservationDate = reservationDate;
@@ -57,7 +60,8 @@ public class Reservation {
         this.movie = movie;
         this.cinema = cinema;
     }
-    //getter and setter
+
+//getter and setter
 
     public User getUser() {
         return user;
@@ -91,11 +95,11 @@ public class Reservation {
         this.audienceStatus = audienceStatus;
     }
 
-    public Seats getSeats() {
+    public Set<Seats> getSeats() {
         return seats;
     }
 
-    public void setSeats(Seats seats) {
+    public void setSeats(Set<Seats> seats) {
         this.seats = seats;
     }
 

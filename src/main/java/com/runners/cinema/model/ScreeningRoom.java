@@ -1,8 +1,10 @@
 package com.runners.cinema.model;
 
+import com.runners.cinema.model.enums.Genre;
 import com.runners.cinema.model.enums.ScreenTypeEnum;
 
 import javax.persistence.*;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,23 +18,34 @@ public class ScreeningRoom{
     @Column(length = 50,nullable = false)
     private String name;
 
+    @OneToMany//bunu koymayinca hata verdi???????????????????????????????????
     private Set<Seats> seat;
     @Column(nullable = false)
     private boolean isOccupied;
 
-    private Set<Movie> movie=new HashSet<>();
 
-    @Enumerated(EnumType.STRING)
-    private Set<ScreenTypeEnum> screenTypeEnum;
+   // private Set<Movie> movie=new HashSet<>();//bu field i kaldir mismiydik??????????????
+
+//   @Enumerated(EnumType.STRING)//buraya bakilacak, enum hatasi veriyor??????????????
+//    private Set<ScreenTypeEnum> screenTypeEnum=new HashSet<>();
+//@Enumerated(EnumType.STRING)
+//private Set<ScreenTypeEnum> screenTypeEnum = new HashSet<>(Arrays.asList(ScreenTypeEnum.SCREEN_TYPE_2D, ScreenTypeEnum.SCREEN_TYPE_3D,ScreenTypeEnum.SCREEN_TYPE_IMAX));
+
+
+
+@Enumerated(EnumType.STRING)
+private ScreenTypeEnum screenTypeEnum;
+
 
     public ScreeningRoom() {
     }
 
-    public ScreeningRoom(long id, String name, boolean isOccupied, Set<ScreenTypeEnum> screenTypeEnum) {
+    public ScreeningRoom(long id, String name, Set<Seats> seat, boolean isOccupied, ScreenTypeEnum screenTypeEnum) {
         this.id = id;
         this.name = name;
+        this.seat = seat;
         this.isOccupied = isOccupied;
-        this.screenTypeEnum=screenTypeEnum;
+        this.screenTypeEnum = screenTypeEnum;
     }
 
     public long getId() {
@@ -44,11 +57,11 @@ public class ScreeningRoom{
 //        }
 
 
-    public Set<ScreenTypeEnum> getScreenTypeEnum() {
+    public ScreenTypeEnum getScreenTypeEnum() {
         return screenTypeEnum;
     }
 
-    public void setScreenTypeEnum(Set<ScreenTypeEnum> screenTypeEnum) {
+    public void setScreenTypeEnum(ScreenTypeEnum screenTypeEnum) {
         this.screenTypeEnum = screenTypeEnum;
     }
 

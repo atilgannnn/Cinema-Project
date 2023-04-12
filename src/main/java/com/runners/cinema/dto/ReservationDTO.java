@@ -1,9 +1,9 @@
-package com.runners.cinema.model.enums;
+package com.runners.cinema.dto;
 
 import java.time.LocalDateTime;
 import java.util.Set;
 
-public class ReservationCDTO {
+public class ReservationDTO {
 
     private Long id;
 
@@ -13,7 +13,7 @@ public class ReservationCDTO {
 
     private LocalDateTime reservationDate;
 
-    private AudienceStatus audienceStatus;
+    //private AudienceStatus audienceStatus;
 
     private Set<Long> seat;
 
@@ -26,19 +26,19 @@ public class ReservationCDTO {
     //construct
 
 
-    public ReservationCDTO(Long id, Long userId, Long tickedId, LocalDateTime reservationDate, AudienceStatus audienceStatus, Set<Long> seat, String pnrNumber, Long movieId, Long cinemaId) {
+    public ReservationDTO(Long id, Long userId, Long tickedId, LocalDateTime reservationDate, Set<Long> seat, String pnrNumber, Long movieId, Long cinemaId) {
         this.id = id;
         this.userId = userId;
         this.tickedId = tickedId;
         this.reservationDate = reservationDate;
-        this.audienceStatus = audienceStatus;
+       // this.audienceStatus = audienceStatus;
         this.seat = seat;
         this.pnrNumber = pnrNumber;
         this.movieId = movieId;
         this.cinemaId = cinemaId;
     }
 
-    public ReservationCDTO() {
+    public ReservationDTO() {
     }
 
     //Getter and Setter
@@ -76,13 +76,13 @@ public class ReservationCDTO {
         this.reservationDate = reservationDate;
     }
 
-    public AudienceStatus getAudienceStatus() {
-        return audienceStatus;
-    }
-
-    public void setAudienceStatus(AudienceStatus audienceStatus) {
-        this.audienceStatus = audienceStatus;
-    }
+//    public AudienceStatus getAudienceStatus() {
+//        return audienceStatus;
+//    }
+//
+//    public void setAudienceStatus(AudienceStatus audienceStatus) {
+//        this.audienceStatus = audienceStatus;
+//    }
 
     public Set<Long> getSeat() {
         return seat;
