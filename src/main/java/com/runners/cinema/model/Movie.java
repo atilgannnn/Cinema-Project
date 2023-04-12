@@ -24,8 +24,11 @@ public class Movie{
     @NotNull
     private String director;
 
-    @Enumerated(EnumType.STRING)
-    private Set<Genre> genre;
+
+   // private Set<Genre> genre;//chat gbt nin onerisi?????????????????????????????????????????????????
+
+   @Enumerated(EnumType.STRING)
+   private Genre genre;
 
     @NotBlank
     @NotNull
@@ -98,11 +101,11 @@ public class Movie{
         this.director = director;
     }
 
-    public Set<Genre> getGenre() {
+    public Genre getGenre() {
         return genre;
     }
 
-    public void setGenre(Set<Genre> genre) {
+    public void setGenre(Genre genre) {
         this.genre = genre;
     }
 
@@ -207,7 +210,8 @@ public class Movie{
     public Movie() {
     }
 
-    public Movie(Long id, String title, String director, Set<Genre> genre, Integer length, Integer minAge, String producer, Set<ScreeningRoom> screeningroom, ScreenTypeEnum screenTypeEnum, boolean subtitle, String actors, String synopsis, String trailerUrl, Set<ImageFile> image, String country, boolean builtIn) {
+    public Movie(Long id, String title, String director, Genre genre, Integer length, Integer minAge, String producer, Set<ScreeningRoom> screeningroom, ScreenTypeEnum screenTypeEnum,
+                 boolean subtitle, String actors, String synopsis, String trailerUrl, Set<ImageFile> image, String country) {
         this.id = id;
         this.title = title;
         this.director = director;
@@ -223,7 +227,6 @@ public class Movie{
         this.trailerUrl = trailerUrl;
         this.image = image;
         this.country = country;
-        this.builtIn = builtIn;
     }
 
     //to String
