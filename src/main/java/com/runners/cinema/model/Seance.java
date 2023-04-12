@@ -38,6 +38,9 @@ public class Seance{
         this.date = date;
         this.isAvailable = isAvailable;
         this.screeningRoom = screeningRoom;
+
+
+        
     }
 
     // Getter setter
@@ -83,3 +86,6 @@ public class Seance{
         this.screeningRoom = screeningRoom;
     }
 }
+
+
+// test amaclı yazdım
