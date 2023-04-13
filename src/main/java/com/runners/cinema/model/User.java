@@ -33,7 +33,7 @@ public class User {
     private LocalDate dateOfBirth;
 
     @Column(nullable = false)
-    private Boolean builtIn;
+    private Boolean builtIn=false;
 
 
     private int point;
