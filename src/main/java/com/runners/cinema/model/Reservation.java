@@ -1,6 +1,7 @@
 package com.runners.cinema.model;
 
 import com.runners.cinema.model.enums.AudienceStatus;
+import com.runners.cinema.model.enums.ReservationStatus;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -25,7 +26,7 @@ public class Reservation {
 
     @Enumerated(EnumType.STRING)
     @Column(length = 30, nullable = false)
-    private AudienceStatus audienceStatus;
+    private ReservationStatus reservationStatus;
 
     @OneToMany
     @JoinColumn(name = "seats_id", referencedColumnName = "id")
@@ -44,19 +45,21 @@ public class Reservation {
 
     //construct
 
+
     public Reservation() {
     }
 
-    public Reservation(User user, Ticket ticket, LocalDateTime reservationDate, AudienceStatus audienceStatus, Seats seats, String pnrNumber, Movie movie, Cinema cinema) {
+    public Reservation(User user, Ticket ticket, LocalDateTime reservationDate, ReservationStatus reservationStatus, Seats seats, String pnrNumber, Movie movie, Cinema cinema) {
         this.user = user;
         this.ticket = ticket;
         this.reservationDate = reservationDate;
-        this.audienceStatus = audienceStatus;
+        this.reservationStatus = reservationStatus;
         this.seats = seats;
         this.pnrNumber = pnrNumber;
         this.movie = movie;
         this.cinema = cinema;
     }
+
     //getter and setter
 
     public User getUser() {
@@ -83,12 +86,12 @@ public class Reservation {
         this.reservationDate = reservationDate;
     }
 
-    public AudienceStatus getAudienceStatus() {
-        return audienceStatus;
+    public ReservationStatus getReservationStatus() {
+        return reservationStatus;
     }
 
-    public void setAudienceStatus(AudienceStatus audienceStatus) {
-        this.audienceStatus = audienceStatus;
+    public void setReservationStatus(ReservationStatus reservationStatus) {
+        this.reservationStatus = reservationStatus;
     }
 
     public Seats getSeats() {
