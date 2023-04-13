@@ -2,7 +2,7 @@ package com.runners.cinema.model.enums;
 
 public enum RoleType {
     ROLE_ADMIN ("Adminastrator"),
-    ROLE_CUSTOMER ("Member");
+    ROLE_CUSTOMER ("Customer");
 
     private String name;
 
