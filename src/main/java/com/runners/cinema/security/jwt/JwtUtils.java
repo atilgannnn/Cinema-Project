@@ -16,10 +16,10 @@ public class JwtUtils {
 
     private  static  final Logger logger= LoggerFactory.getLogger(JwtUtils.class);
 
-    @Value("${cinema.app.jwtSecret}")
+   @Value("${Cinema-Project.app.jwtSecret}")
     private String jwtSecret;
 
-    @Value("${cinema.app.jwtExpirationMs}")
+    @Value("${Cinema-Project.app.jwtExpirationMs}")
     private Long jwtExpirationMs;
 
 
