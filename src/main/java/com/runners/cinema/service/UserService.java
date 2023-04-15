@@ -1,5 +1,7 @@
 package com.runners.cinema.service;
 
+import com.runners.cinema.convertor.UserConvertor;
+import com.runners.cinema.dto.UserDTO;
 import com.runners.cinema.dto.request.RegisterRequest;
 import com.runners.cinema.exception.ConflictException;
 import com.runners.cinema.exception.ErrorMessage;
@@ -8,6 +10,7 @@ import com.runners.cinema.model.Role;
 import com.runners.cinema.model.User;
 import com.runners.cinema.model.enums.RoleType;
 import com.runners.cinema.repository.UserRepository;
+import com.runners.cinema.security.SecurityUtils;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -24,10 +27,13 @@ public class UserService {
 
     private final PasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository userRepository, RoleService roleService, @Lazy  PasswordEncoder passwordEncoder) {
+    private final UserConvertor userConvertor;
+
+    public UserService(UserRepository userRepository, RoleService roleService, @Lazy  PasswordEncoder passwordEncoder, UserConvertor userConvertor) {
         this.userRepository = userRepository;
         this.roleService = roleService;
         this.passwordEncoder = passwordEncoder;
+        this.userConvertor = userConvertor;
     }
 
     public User getUserByEmail(String email) {
@@ -60,6 +66,19 @@ public class UserService {
 
         userRepository.save(user);
 
+    }
+    public UserDTO getPrinciple() {
+        User user = getCurrentUser();
+
+   return  userConvertor.userToUserDTO(user);
 
     }
+
+    private User getCurrentUser(){
+     String email=   SecurityUtils.getCurrentUser().orElseThrow(()->
+             new ResourceNotFoundException(ErrorMessage.CURRENT_USER_NOT_FOUND_MESSAGE));
+   return getUserByEmail(email);
+    }
+
+
 }
